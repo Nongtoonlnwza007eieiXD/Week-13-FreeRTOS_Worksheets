@@ -219,21 +219,54 @@ idf.py build
 
 ## Checklist การทำงาน
 
-- [ ] ตรวจสอบ ESP-IDF environment สำเร็จ
-- [ ] สร้างโปรเจกต์ใหม่ได้
-- [ ] เข้าใจโครงสร้างโปรเจกต์
-- [ ] Build โปรเจกต์สำเร็จ
-- [ ] แก้ไขโค้ดและ build ใหม่ได้
-- [ ] เข้าใจไฟล์ CMakeLists.txt
-- [ ] ทำแบบฝึกหัดครบ
+- [ /] ตรวจสอบ ESP-IDF environment สำเร็จ
+- [ /] สร้างโปรเจกต์ใหม่ได้
+- [ /] เข้าใจโครงสร้างโปรเจกต์
+- [ /] Build โปรเจกต์สำเร็จ
+- [ /] แก้ไขโค้ดและ build ใหม่ได้
+- [ /] เข้าใจไฟล์ CMakeLists.txt
+- [ /] ทำแบบฝึกหัดครบ
 
 ## คำถามทบทวหน
 
 1. ไฟล์ใดบ้างที่จำเป็นสำหรับโปรเจกต์ ESP-IDF ขั้นต่ำ?
+
+    ต้องมี CMakeLists.txt, main/, และ main.c อย่างน้อย 3 ส่วน
+
 2. ความแตกต่างระหว่าง `hello_esp32.bin` และ `hello_esp32.elf` คืออะไร?
+
+    idf.py build จะสร้าง .elf ก่อน แล้วแปลงเป็น .bin สำหรับการ flash
+
 3. คำสั่ง `idf.py set-target` ทำอะไร?
+
+    เมื่อรันคำสั่งนี้ ESP-IDF จะปรับค่า toolchain, compiler และการ config ต่าง ๆ ให้ตรงกับ target device
+
 4. โฟลเดอร์ `build/` มีไฟล์อะไรบ้าง?
+
+    build/ คือโฟลเดอร์ผลลัพธ์จากการคอมไพล์ โดย ESP-IDF จะสร้างอัตโนมัติ
+ภายในจะมีเช่น:
+
+hello_esp32.bin → ไฟล์ไบนารีสำหรับ flash ลงบอร์ด
+
+hello_esp32.elf → ไฟล์สำหรับ debug
+
+bootloader/ → bootloader ที่ ESP ใช้เริ่มระบบ
+
+partition_table/ → ตารางพาร์ทิชันของแฟลช
+
+CMakeFiles/, esp-idf/, config/ → ข้อมูล intermediate ที่ใช้คอมไพล์
+
+สามารถล้างทั้งหมดด้วยคำสั่ง idf.py clean
+
 5. การใช้ `vTaskDelay()` แทน `delay()` มีความสำคัญอย่างไร?
+
+    vTaskDelay() เป็นฟังก์ชันของ FreeRTOS ใช้หน่วงเวลาภายใน task
+
+เมื่อใช้ vTaskDelay(), CPU จะ คืนเวลาทำงานให้ task อื่น ๆ → ระบบทำงานแบบ multi-task ได้เต็มประสิทธิภาพ
+
+แต่ delay() (หรือ sleep) จะ บล็อก CPU ทั้งหมด ไม่ให้ task อื่นทำงาน
+
+ดังนั้นใน FreeRTOS ต้องใช้ vTaskDelay(pdMS_TO_TICKS(ms)) เพื่อให้ task scheduling ทำงานได้ถูกต้อง
 
 ## บทสรุป
 

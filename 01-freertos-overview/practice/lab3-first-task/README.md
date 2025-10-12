@@ -407,20 +407,30 @@ ESP_LOGI(TAG, "Task state: %s", state_names[state]);
 
 ## Checklist การทำงาน
 
-- [ ] สร้าง Task พื้นฐานสำเร็จ
-- [ ] เข้าใจ Task parameters และ return values
-- [ ] ทดสอบ Task priorities
-- [ ] ใช้ Task management APIs (suspend/resume)
-- [ ] แสดง runtime statistics
-- [ ] ทำแบบฝึกหัดครบ
+- [ /] สร้าง Task พื้นฐานสำเร็จ
+- [ /] เข้าใจ Task parameters และ return values
+- [ /] ทดสอบ Task priorities
+- [ /] ใช้ Task management APIs (suspend/resume)
+- [ /] แสดง runtime statistics
+- [ /] ทำแบบฝึกหัดครบ
 
 ## คำถามทบทวน
 
 1. เหตุใด Task function ต้องมี infinite loop?
+    เพราะ Task ต้องทำงานต่อเนื่องตลอดอายุระบบ ถ้าไม่มี loop จะสิ้นสุดและถูกลบออกจาก Scheduler ทันที
+
 2. ความหมายของ stack size ใน xTaskCreate() คืออะไร?
+    คือพื้นที่หน่วยความจำที่แต่ละ Task ใช้เก็บตัวแปรภายในและ context ระหว่างรัน
+
 3. ความแตกต่างระหว่าง vTaskDelay() และ vTaskDelayUntil()?
+    vTaskDelay() หน่วงจากเวลาปัจจุบัน ส่วน vTaskDelayUntil() หน่วงแบบคงคาบเวลา (ใช้ควบคุม period ให้คงที่)
+
 4. การใช้ vTaskDelete(NULL) vs vTaskDelete(handle) ต่างกันอย่างไร?
+    vTaskDelete(NULL) ลบตัวเอง,
+    vTaskDelete(handle) ลบ Task อื่นผ่าน handle
+
 5. Priority 0 กับ Priority 24 อันไหนสูงกว่า?
+    Priority 24 สูงกว่า (ตัวเลขมาก = ลำดับการทำงานสูงกว่า)
 
 ## บทสรุป
 

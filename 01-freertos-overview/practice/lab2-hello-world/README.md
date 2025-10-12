@@ -300,20 +300,29 @@ idf.py monitor | tee output.log
 
 ## Checklist การทำงาน
 
-- [ ] Flash และ Monitor สำเร็จ
-- [ ] เห็น Log messages ต่างๆ
-- [ ] ทดสอบ Log levels ต่างๆ
-- [ ] ใช้ formatted logging ได้
-- [ ] ปรับ Log level ผ่าน menuconfig
-- [ ] ทำแบบฝึกหัดครบ
+- [/] Flash และ Monitor สำเร็จ
+- [/] เห็น Log messages ต่างๆ
+- [/] ทดสอบ Log levels ต่างๆ
+- [/] ใช้ formatted logging ได้
+- [/] ปรับ Log level ผ่าน menuconfig
+- [/] ทำแบบฝึกหัดครบ
 
 ## คำถามทบทวน
 
 1. ความแตกต่างระหว่าง `printf()` และ `ESP_LOGI()` คืออะไร?
+    ESP_LOGI() เหมาะกับงานจริงเพราะควบคุมระดับ log และระบุ tag ได้ ส่วน printf() ใช้แค่ debug ทั่วไป
+
 2. Log level ไหนที่จะแสดงใน default configuration?
+    INFO ขึ้นไป
+
 3. การใช้ `ESP_ERROR_CHECK()` มีประโยชน์อย่างไร?
+    ตรวจ error และ abort อัตโนมัติ
+
 4. คำสั่งใดในการออกจาก Monitor mode?
+    Ctrl + ]
+
 5. การตั้งค่า Log level สำหรับ tag เฉพาะทำอย่างไร?
+    esp_log_level_set("TAG", LEVEL)
 
 ## บทสรุป
 
