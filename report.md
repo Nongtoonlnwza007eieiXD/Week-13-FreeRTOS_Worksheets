@@ -22,3 +22,26 @@ Exercise 1: เปลี่ยน Priority แบบ Dynamic
 ![alt text](image-10.png)
 Exercise 2: Task Affinity (ESP32 Dual-Core)
 ![alt text](image-11.png)
+Lab 2: Task States Demonstration
+![alt text](image-12.png)
+Exercise 1: State Transition Counter
+![alt text](image-13.png)
+Exercise 2: Custom State Indicator
+![alt text](image-14.png)
+Lab 3: Stack Monitoring และ Debugging
+![alt text](image-15.png)
+Exercise 1: Stack Size Optimization
+![alt text](image-16.png)
+Exercise 2: Dynamic Stack Monitoring
+![alt text](image-17.png)
+03
+Lab 1: Basic Queue Operations (45 นาที)
+![alt text](image-18.png)
+Lab 2: Producer-Consumer System
+![alt text](image-20.png)
+การทดลองที่2และ3
+![alt text](image-21.png)
+Lab 3: Queue Sets Implementation
+![alt text](image-22.png)
+การทดลองที่ 2และ3
+![alt text](image-23.png)

@@ -453,10 +453,39 @@ void dynamic_stack_monitor(TaskHandle_t task_handle, const char* task_name)
 ## คำถามสำหรับวิเคราะห์
 
 1. Task ไหนใช้ stack มากที่สุด? เพราะอะไร?
+    Heavy Task ใช้ stack มากที่สุด
+    เพราะภายในมีการประกาศตัวแปรขนาดใหญ่ในหน่วยความจำภายในฟังก์ชัน (local arrays เช่น char buffer[1024], int arr[200]) ทำให้กินพื้นที่ใน stack มากกว่า task อื่นที่ใช้เพียงตัวแปรขนาดเล็กหรือค่าชั่วคราว
+
 2. การใช้ heap แทน stack มีข้อดีอย่างไร?
+    การใช้ heap memory (malloc/free) แทน stack ช่วยลดความเสี่ยง stack overflow และทำให้สามารถจัดการหน่วยความจำแบบยืดหยุ่นได้
+    โดยเฉพาะเมื่อจำเป็นต้องใช้ buffer ขนาดใหญ่ที่ไม่คงที่แต่ต้องระวังการ free() ไม่ครบ เพราะจะเกิด memory leak ได้
+
 3. Stack overflow เกิดขึ้นเมื่อไหร่และทำอย่างไรป้องกัน?
+    เกิดเมื่อมีการใช้หน่วยความจำใน stack เกินขนาดที่กำหนดตอนสร้าง task (xTaskCreate)
+    เช่น การเรียก recursion ลึกเกินไป หรือประกาศตัวแปรขนาดใหญ่เกิน stack limit
+    การป้องกัน:
+
+    ใช้ uxTaskGetStackHighWaterMark() เพื่อตรวจสอบ stack เหลือ
+
+    เปิด CONFIG_FREERTOS_CHECK_STACKOVERFLOW=2 ใน menuconfig
+
+    ย้าย buffer ขนาดใหญ่ไปใช้ heap (malloc)
+
+    เพิ่ม stack size ให้เหมาะสม
+
 4. การตั้งค่า stack size ควรพิจารณาจากอะไร?
+    จำนวนตัวแปรในฟังก์ชัน (local variables)
+
+การใช้ recursion หรือการเรียกฟังก์ชันซ้อนลึก
+
+    ความถี่ในการ log / string format (เพราะ printf ใช้ stack มาก)
+    โดยเริ่มจากขนาดปานกลาง เช่น 2048 bytes แล้วตรวจสอบด้วย Stack Monitor เพื่อปรับให้เหมาะสม
+
 5. Recursion ส่งผลต่อ stack usage อย่างไร?
+    Recursion ใช้ stack แบบต่อเนื่องในแต่ละชั้นการเรียกฟังก์ชัน
+    ทุกครั้งที่เรียกตัวเองจะเก็บ context เดิมไว้ใน stack → ทำให้ stack เพิ่มขึ้นตาม depth
+    ถ้า recursion ลึกเกินไป จะเกิด stack overflow ได้ง่าย
+    จึงควรจำกัดระดับ recursion (depth limit) หรือเปลี่ยนเป็นการใช้ loop แทนในงานจริง
 
 ## ผลการทดลองที่คาดหวัง
 
