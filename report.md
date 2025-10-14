@@ -45,3 +45,16 @@ Lab 3: Queue Sets Implementation
 ![alt text](image-22.png)
 การทดลองที่ 2และ3
 ![alt text](image-23.png)
+04
+Lab 1: Binary Semaphores 
+![alt text](image-24.png)
+การทดลองที่2 และ 3
+![alt text](image-25.png)
+Lab 2: Mutex and Critical Sections
+![alt text](image-26.png)
+การทดลองที่2 และ3
+![alt text](image-27.png)
+Lab 3: Counting Semaphores
+![alt text](image-28.png)
+การทดลองที่2 และ3
+![alt text](image-29.png)
