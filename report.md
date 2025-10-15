@@ -58,3 +58,10 @@ Lab 3: Counting Semaphores
 ![alt text](image-28.png)
 การทดลองที่2 และ3
 ![alt text](image-29.png)
+05
+Lab 1: Basic Software Timers
+![alt text](image-30.png)
+การทดลองที่2 และ3
+![alt text](image-31.png)
+Lab 2: Timer Applications
+![alt text](image-32.png)
