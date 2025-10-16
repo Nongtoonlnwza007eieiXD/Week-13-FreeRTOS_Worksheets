@@ -82,4 +82,5 @@ Lab 3: Advanced Timer Management & Performance
  Lab 3: Memory Optimization
  ![alt text](image-39.png)
  08
- 
+ESP-IDF Specific FreeRTOS Features
+ ![alt text](image-40.png)
