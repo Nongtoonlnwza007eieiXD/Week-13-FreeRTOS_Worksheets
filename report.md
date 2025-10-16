@@ -65,3 +65,21 @@ Lab 1: Basic Software Timers
 ![alt text](image-31.png)
 Lab 2: Timer Applications
 ![alt text](image-32.png)
+Lab 3: Advanced Timer Management & Performance 
+[text](05-timers)
+06
+ Lab 1: Basic Event Groups
+ ![alt text](image-33.png)
+ Lab 2: Event Synchronization
+ ![alt text](image-35.png)
+ Lab 3: Complex Event Patterns
+ ![alt text](image-36.png)
+ 07
+ Lab 1: Heap Management 
+ ![alt text](image-37.png)
+ Lab 2: Memory Pools
+ ![alt text](image-38.png)
+ Lab 3: Memory Optimization
+ ![alt text](image-39.png)
+ 08
+ 
